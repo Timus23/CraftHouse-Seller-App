@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:connectivity/connectivity.dart';
+import 'package:seller/login.dart';
 import 'package:seller/myCoursesEdit.dart';
 import 'package:seller/product.dart';
 import 'package:seller/serverAddress.dart';
@@ -107,6 +108,9 @@ class MyProdState extends State<MyProd> {
                 if (snap.data == null) {
                   return reconnect('Connection TimeOut');
                 }
+                if (snap.data.statusCode == 401) {
+                  return unAuthorizedLogin();
+                }
                 _products = json.decode(snap.data.body);
                 if (_products.length == 0) {
                   return Container(
@@ -127,6 +131,28 @@ class MyProdState extends State<MyProd> {
         : reconnect("No Connection");
   }
 
+  Widget unAuthorizedLogin() {
+    return Container(
+        child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[Text('Login Failed!!')],
+        ),
+        RaisedButton(
+          color: Colors.red,
+          child: Text(
+            'Re-Login',
+            style: TextStyle(color: Colors.white),
+          ),
+          onPressed: () => Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => Loginn())),
+        )
+      ],
+    ));
+  }
+
   Widget courseDisplay() {
     return connectionState
         ? FutureBuilder(
@@ -141,6 +167,9 @@ class MyProdState extends State<MyProd> {
               } else if (snap.connectionState == ConnectionState.done) {
                 if (snap.data == null) {
                   return reconnect('Connection TimeOut');
+                }
+                if (snap.data.statusCode == 401) {
+                  return unAuthorizedLogin();
                 }
                 _courses = json.decode(snap.data.body);
                 if (_courses.length == 0) {
