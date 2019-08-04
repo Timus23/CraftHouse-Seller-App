@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:http/http.dart' as http;
 import 'package:seller/changePassword.dart';
+import 'package:seller/login.dart';
 import 'package:seller/serverAddress.dart';
 import 'dart:convert';
 import 'package:toast/toast.dart';
@@ -89,16 +90,21 @@ class VerifyState extends State<Verify> {
       _formKey.currentState.save();
       if (widget.from == 'signup' || widget.from == 'login') {
         http
-            .get(Server.signupVerify + _code, headers: config)
+            .get(Server.signupVerify + _code.trim(), headers: config)
             .then((http.Response response) {
           Map<String, dynamic> info = json.decode(response.body);
+          print(info);
           if (response.statusCode == 200) {
             Toast.show(info['success'].toString(), context,
                 duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => Loginn()));
           } else {
             Toast.show(info['detail'].toString(), context,
                 duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
           }
+        }).catchError((err) {
+          Toast.show('Net Unavailable', context);
         });
       }
       if (widget.from == 'reset') {
@@ -125,6 +131,8 @@ class VerifyState extends State<Verify> {
                   duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
             }
           }
+        }).catchError((err) {
+          Toast.show('Net Unavailable', context);
         });
       }
     }

@@ -41,6 +41,8 @@ class _ProductState extends State<Product> {
           _category = temp;
         });
       }
+    }).catchError((err) {
+      Toast.show('Net Unavailable', context);
     });
   }
 
@@ -65,10 +67,6 @@ class _ProductState extends State<Product> {
   void initState() {
     super.initState();
     _category = [];
-    // productItem = {};
-    // if (widget.productItemId != null) {
-    //   getProduct();
-    // }
     getCategories();
     getUserData();
   }
@@ -450,12 +448,8 @@ class _ProductState extends State<Product> {
   }
 
   String validateName(String value) {
-    String patttern = r'(^[a-zA-Z ]*$)';
-    RegExp regExp = new RegExp(patttern);
     if (value.length == 0) {
       return "Name is Required";
-    } else if (!regExp.hasMatch(value)) {
-      return "Name must be a-z and A-Z";
     }
     return null;
   }
@@ -472,8 +466,8 @@ class _ProductState extends State<Product> {
     RegExp regExp = new RegExp(patttern);
     if (value.length == 0) {
       return "Price is Required";
-    } else if (value.length < 2) {
-      return "Price must be more than 100";
+    } else if (value.length < 1) {
+      return "Price must be more than 10";
     } else if (!regExp.hasMatch(value)) {
       return "Price must be a number";
     }

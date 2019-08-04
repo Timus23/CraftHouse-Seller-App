@@ -137,17 +137,17 @@ class ChangePasswordState extends State<ChangePassword> {
               duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
           Navigator.of(context).pushReplacement(
               MaterialPageRoute(builder: (BuildContext context) => Loginn()));
-        }
-        else{
-          if(info.containsKey('password')){
+        } else {
+          if (info.containsKey('password')) {
             Toast.show(info['password'].toString(), context,
-              duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
-          }
-          else if(info.containsKey('detail')){
+                duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
+          } else if (info.containsKey('detail')) {
             Toast.show(info['detail'].toString(), context,
-              duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
+                duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
           }
         }
+      }).catchError((err) {
+        Toast.show('Net Unavailable', context);
       });
     }
   }

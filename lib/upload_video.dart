@@ -51,12 +51,9 @@ class _UploadState extends State<Upload> {
       if (filePath == '') {
         return;
       }
-      print("File path: " + filePath);
       setState(() {
         this._filePath = filePath;
       });
-      print('------------------------------');
-      print(_filePath);
     } on PlatformException catch (e) {
       print("Error while picking the file: " + e.toString());
     }
@@ -210,15 +207,12 @@ class _UploadState extends State<Upload> {
   void submit() {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
-      print(_filePath);
-      print(config);
       FormData data = FormData.from({
         'course_id': widget.courseId,
         'title': _title,
         'file': UploadFileInfo(File(_filePath), _filePath.split('/').last),
       });
       try {
-        print(data);
         setState(() {
           isLoading = true;
         });

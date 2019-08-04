@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
@@ -275,6 +274,8 @@ class _SignupState extends State<Signup> {
                                       gravity: Toast.BOTTOM);
                                 }
                               }
+                            }).catchError((err) {
+                              Toast.show('Net Unavailable', context);
                             });
                           } catch (e) {
                             print(e);

@@ -115,6 +115,8 @@ class ResetPageState extends State<ResetPage> {
                 duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
           }
         }
+      }).catchError((err) {
+        Toast.show('Net Unavailable', context);
       });
     }
   }

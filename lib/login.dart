@@ -211,6 +211,8 @@ class _LoginnState extends State<Loginn> {
               }
             }
           }
+        }).catchError((err) {
+          Toast.show('Net Unavailable', context);
         });
       } catch (e) {
         setState(() {

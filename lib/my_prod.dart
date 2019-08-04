@@ -237,6 +237,8 @@ class MyProdState extends State<MyProd> {
                   duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
             }
             setState(() {});
+          }).catchError((err) {
+            Toast.show('Net Unavailable', context);
           });
         },
         confirmDismiss: (DismissDirection direction) async {
@@ -393,6 +395,8 @@ class MyProdState extends State<MyProd> {
                   duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
             }
             setState(() {});
+          }).catchError((err) {
+            Toast.show('Net Unavailable', context);
           });
         },
         confirmDismiss: (DismissDirection direction) async {

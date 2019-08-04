@@ -310,6 +310,8 @@ class _QuizState extends State<Quiz> {
           Toast.show("Unable to Upload Question", context,
               duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
         }
+      }).catchError((err) {
+        Toast.show('Net Unavailable', context);
       });
     }
   }

@@ -259,6 +259,8 @@ class MyCourseEditState extends State<MyCourseEdit> {
           Toast.show(msg['detail'], context,
               gravity: Toast.BOTTOM, duration: Toast.LENGTH_SHORT);
         }
+      }).catchError((err) {
+        Toast.show('Net Unavailable', context);
       });
     }
   }

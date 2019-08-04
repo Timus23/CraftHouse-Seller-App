@@ -214,8 +214,10 @@ class EditProductState extends State<EditProduct> {
       // widget.header['Content-Type'] = 'application/json';
 
       http
-          .patch(Server.productUpdate + widget.productData['id'].toString() + '/',
-              body: json.encode(productItem), headers: widget.header)
+          .patch(
+              Server.productUpdate + widget.productData['id'].toString() + '/',
+              body: json.encode(productItem),
+              headers: widget.header)
           .then((http.Response response) {
         setState(() {
           isLoading = false;
@@ -230,6 +232,8 @@ class EditProductState extends State<EditProduct> {
           Toast.show(msg['detail'], context,
               gravity: Toast.BOTTOM, duration: Toast.LENGTH_SHORT);
         }
+      }).catchError((err) {
+        Toast.show('Net Unavailable', context);
       });
     }
   }

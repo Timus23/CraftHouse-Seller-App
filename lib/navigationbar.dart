@@ -42,9 +42,6 @@ class NavigationbarState extends State<Navigationbar> {
     Video(
       key: PageStorageKey('Page4'),
     ),
-    // MyCourse(
-    //   key: PageStorageKey('Page3'),
-    // ),
   ];
   final PageStorageBucket bucket = PageStorageBucket();
 
@@ -84,6 +81,8 @@ class NavigationbarState extends State<Navigationbar> {
           Toast.show("Unauthorized Logout", context,
               duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
         }
+      }).catchError((err) {
+        Toast.show('Net Unavailable', context);
       });
     }
   }

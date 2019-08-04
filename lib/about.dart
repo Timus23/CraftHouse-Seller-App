@@ -10,13 +10,14 @@ class About extends StatelessWidget {
         title: Text('About This Application'),
       ),
       body: Container(
-          height: 600.0,
-          child: new Text(
-            "This is a mobile application to promote local arts and crafts.",
-            style: TextStyle(
-              color: Colors.red,
-            ),
-          )),
+        height: 600.0,
+        child: new Text(
+          "This is a mobile application to promote local arts and crafts.",
+          style: TextStyle(
+            color: Colors.red,
+          ),
+        ),
+      ),
     );
   }
 }

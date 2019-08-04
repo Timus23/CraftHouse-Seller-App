@@ -120,6 +120,8 @@ class TestPageState extends State<TestPage> {
           Toast.show("Unable to Create Test", context,
               duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
         }
+      }).catchError((err) {
+        Toast.show('Net Unavailable', context);
       });
     }
   }

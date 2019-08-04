@@ -39,6 +39,7 @@ class HomePageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Craft Home ',
       home: authenticate ? Navigationbar() : Loginn(),
     );

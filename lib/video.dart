@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:seller/serverAddress.dart';
 import 'package:seller/upload_video.dart';
-import 'package:seller/uploadquiz.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:http/http.dart' as http;
 import 'package:toast/toast.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
@@ -320,10 +318,6 @@ class _VideoState extends State<Video> {
                 duration: Toast.LENGTH_SHORT, gravity: Toast.BOTTOM);
           }
         });
-        // http
-        //     .post(Server.courseAdd, headers: head, body: json.encode(body))
-        //     .then((http.Response res) {
-        // });
       } catch (e) {
         print(e);
       }
